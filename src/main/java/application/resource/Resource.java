@@ -16,7 +16,7 @@ public class Resource {
 
 //    private final Counter successes = Metrics.counter("eds.requests", "result", "success");
 //    private final Counter failures = Metrics.counter("eds.requests", "result", "failure");
-    static final Counter requests = Counter.build().name("requests_total").help("Total requests.").register();
+//    static final Counter requests = Counter.build().name("requests_total").help("Total requests.").register();
 //    @GetMapping("/hello-world")
 //    String helloWorld(){
 //        Random random = new Random();
@@ -32,14 +32,14 @@ public class Resource {
     @GetMapping("/hello")
     @Counted(value = "hello.api.counter")
     String hello(){
-        requests.inc();
+//        requests.inc();
         Random random = new Random();
 //        successes.increment();
         int x = random.nextInt(50);
-//        if(x%2 == 0){
+        if(x%2 == 0){
 //            failures.increment();
-//            throw new RuntimeException();
-//        }
+            throw new RuntimeException();
+        }
         return "Hello!";
     }
 }
